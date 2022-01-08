@@ -6,13 +6,15 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { FormsModule } from '@angular/forms';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodosFilterComponent } from './todos-filter/todos-filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoFormComponent,
     TodoItemComponent,
-    TodoListComponent
+    TodoListComponent,
+    TodosFilterComponent
   ],
   imports: [
     BrowserModule,

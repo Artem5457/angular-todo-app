@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { LocalStorageService } from '../local-storage.service';
-import {TransformListService} from "../transform-list.service";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 export interface Todo {
   id: number,
@@ -14,21 +12,18 @@ export interface Todo {
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-  inputValue!: string;
+  @Output() onAdd: EventEmitter<Todo> = new EventEmitter<Todo>();
+  inputValue: string = '';
   newId!: number;
   newTodo!: Todo;
 
   constructor(
-    private myLocalStorage: LocalStorageService,
-    private myTodos: TransformListService
   ) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(event: Event): void {
-    event.preventDefault();
-
+  onSubmit(): void {
     if (this.inputValue.length > 0) {
       this.newId = +new Date();
       this.newTodo = {
@@ -38,8 +33,7 @@ export class TodoFormComponent implements OnInit {
       }
     }
 
-    this.myTodos.addTodo(this.newTodo);
-    this.myLocalStorage.setLocalStorage('todos', this.myTodos.todos);
+    this.onAdd.emit(this.newTodo);
 
     this.inputValue = "";
   }

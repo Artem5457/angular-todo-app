@@ -1,0 +1,24 @@
+<section class="todoapp">
+  <app-todo-form (onAdd)="addTodo($event)"></app-todo-form>
+  <app-todo-list
+    [todos]="todos"
+  ></app-todo-list>
+
+  <footer class="footer">
+    <span class="todo-count" >
+<!--      {{ completedTodos.length }} items left-->
+    </span>
+
+    <app-todos-filter
+      [todos]="todos"
+    ></app-todos-filter>
+
+    <button
+      type="button"
+      class="clear-completed"
+      (click)="completedRemove()"
+    >
+      Clear completed
+    </button>
+  </footer>
+</section>

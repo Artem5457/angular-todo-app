@@ -1,1 +1,33 @@
-<p>todo-item works!</p>
+<li
+  (dblclick)="changeMode()"
+  [ngClass]="{
+    completed: todo.completed,
+    editing: editMode
+  }"
+>
+  <div class="view">
+    <input
+      type="checkbox"
+      class="toggle"
+      [checked]="todo.completed"
+      (change)="completeChange(todo)"
+    >
+
+    <label>
+      {{ todo.title }}
+    </label>
+
+    <button
+      type="button"
+      class="destroy"
+      (click)="removeTodo(todo)"
+    ></button>
+  </div>
+
+  <input
+    type="text"
+    [(ngModel)]="editTitle"
+    class="edit"
+    (keyup)="onKeyUp($event)"
+  >
+</li>
